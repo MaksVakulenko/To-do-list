@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Tag List</h1>
+    <a href="{% url 'tag-create' %}" class="btn btn-primary">Create New Tag</a>
+  </div>
+
+  {% for tag in tags %}
+    <div class="card bg-secondary text-white mb-3">
+      <div class="card-body">
+        <h3 class="card-title">{{ tag.name }}</h3>
+        
+        <div class="d-flex gap-2">
+          <a href="{% url 'tag-update' tag.pk %}" class="btn btn-warning">Update</a>
+          <a href="{% url 'tag-delete' tag.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-muted">No tags available.</p>
+  {% endfor %}
+{% endblock %}
